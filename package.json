@@ -20,8 +20,11 @@
     "typescript": "^5.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:css": "postcss src/styles/tailwind.css -o src/styles/app.css",
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/app.css --watch",
+    "react-scripts:start": "sleep 5 && react-scripts start",
+    "start": "run-p watch:css react-scripts:start",
+    "build": "run-s build:css react-scripts:build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -44,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.2.0",
