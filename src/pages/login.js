@@ -18,12 +18,11 @@ export default function Login(){
         event.preventDefault();
         try{
             await firebase.auth().signInWithEmailAndPassword(emailAddress,password);
-            navigate(ROUTES.DASHBOARD );
+            navigate(ROUTES.DASHBOARD);
         }catch(error){
             setEmailAddress('');
             setPassword('');
             setError(error.message);
-            console.log(emailAddress, password);
         }
     };
 
@@ -31,9 +30,6 @@ export default function Login(){
         document.title = 'Login-Instagram';
     },[])
 
-    useEffect(() => {
-        console.log(emailAddress, password);
-      }, [emailAddress, password]);
 
     return(
     <div className = "container flex mx-auto max-w-screen-md items-center h-screen">
@@ -49,15 +45,14 @@ export default function Login(){
             {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
             <form onSubmit={handleLogin
             } method="POST">
-                <input aria-lable="Enter your email address" type="text" placeholder="Email address" value={emailAddress} className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2" onChange={({target})=>{ setEmailAddress(target.value)
-                console.log(target.value)}}/>
-                <input aria-lable="Enter your password" type="password" placeholder="Password" value={password} className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2" onChange={({target})=>{ setPassword(target.value)}}/>
+                <input area-lable="Enter your email address" type="text" placeholder="Email address" value={emailAddress} className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2" onChange={({target})=>{ setEmailAddress(target.value)}}/>
+                <input area-lable="Enter your password" type="password" placeholder="Password" value={password} className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2" onChange={({target})=>{ setPassword(target.value)}}/>
                 <button disabled={isInvalid} type="submit" className={`bg-blue-medium text-white rounded w-full h-8 font-bold ${isInvalid && 'opacity-50'}`}>Login</button>
             </form>
         </div>
             <div className="flex justify-center items-center flex-col w-full bg-white p-4 border border-gray-primary rounded">
                 <p className="text-sm">Don&apos;t have an account?{` `}
-                <Link to="/signup" className="font-bold text-blue-medium">Sign Up</Link>
+                <Link to={ROUTES.SIGN_UP} className="font-bold text-blue-medium">Sign Up</Link>
                 </p>
             </div>
         </div>
